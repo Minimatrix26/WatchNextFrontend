@@ -18,6 +18,30 @@
     <p><strong>Scor IMDb:</strong> {{ movie.imdbScore }}</p>
     <p><strong>Descriere:</strong></p>
     <p class="description">{{ movie.description }}</p>
+    <button (click)="addToWishlist()">Adaugă la favorite</button>
   </div>
-  <button (click)="addToWishlist()">Adaugă la favorite</button>
+</div>
+
+<hr />
+
+<div class="reviews-section" *ngIf="movie">
+  <h3>Recenzii utilizatori</h3>
+
+  <div *ngIf="reviews.length > 0; else noReviews">
+    <ul>
+      <li *ngFor="let review of reviews">
+        <strong>{{ review.username }}:</strong> {{ review.text }}
+      </li>
+    </ul>
+  </div>
+  <ng-template #noReviews>
+    <p>Nu există recenzii pentru acest film.</p>
+  </ng-template>
+
+  <div class="review-form">
+    <h4>Lasă o recenzie</h4>
+    <textarea [(ngModel)]="newReviewContent" rows="4" placeholder="Scrie recenzia ta..."></textarea>
+    <br />
+    <button (click)="submitReview()">Trimite recenzie</button>
+  </div>
 </div>
