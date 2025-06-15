@@ -50,15 +50,15 @@ export class WishlistComponent implements OnInit {
   }
 
   removeFromWishlist(movieId: number): void {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const token = this.authService.getToken();
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.delete('http://localhost:8080/api/v1/wishlist', {
-      headers,
-      body: { movieId }
-    }).subscribe({
-      next: () => this.movies = this.movies.filter(m => m.id !== movieId),
-      error: () => alert('Nu s-a putut elimina filmul din favorite.')
-    });
-  }
+  this.http.delete(`http://localhost:8080/api/v1/wishlist/${movieId}`, {
+    headers
+  }).subscribe({
+    next: () => this.movies = this.movies.filter(m => m.id !== movieId),
+    error: () => alert('Nu s-a putut elimina filmul din favorite.')
+  });
+}
+
 }
