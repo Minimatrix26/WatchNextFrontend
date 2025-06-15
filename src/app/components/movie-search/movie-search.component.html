@@ -1,0 +1,26 @@
+<div class="search-container">
+  <input [(ngModel)]="query" (ngModelChange)="onQueryChange()" placeholder="Caută film după titlu..." />
+</div>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div class="movie-grid" *ngIf="movies.length">
+  <div class="movie-card" *ngFor="let movie of movies">
+    <div class="poster-placeholder">
+      <img
+        *ngIf="movie.posterPath; else noPoster"
+        [src]="'https://image.tmdb.org/t/p/original/' + movie.posterPath"
+        alt="{{ movie.title }}"
+      />
+      <ng-template #noPoster>
+        <img src="assets/no-poster.png" alt="Poster indisponibil" />
+      </ng-template>
+    </div>
+    <div class="movie-info">
+      <a [routerLink]="['/movies', movie.id]">
+        <h3>{{ movie.title }}</h3>
+      </a>
+      <p>IMDb: {{ movie.imdbScore }}</p>
+    </div>
+  </div>
+</div>

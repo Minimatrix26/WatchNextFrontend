@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <a routerLink="/" routerLinkActive="active">Filme</a>
+  <a routerLink="/recommendations" routerLinkActive="active">Recomandări</a>
+  <a routerLink="/search" routerLinkActive="active">Căutare</a>
+  <a routerLink="/filter" routerLinkActive="active">Filme pe perioadă</a>
+  <a routerLink="/wishlist">Favorite</a>
+  <a routerLink="/account" routerLinkActive="active">Contul Meu</a>
+
+
+  <span class="spacer"></span>
+
+  <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+  <button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+</nav>
+

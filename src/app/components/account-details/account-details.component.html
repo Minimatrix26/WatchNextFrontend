@@ -1,0 +1,14 @@
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div *ngIf="user" class="account-container">
+  <h2>Detalii cont</h2>
+  <ul>
+    <li><strong>Nume:</strong> {{ user.firstname }} {{ user.lastname }}</li>
+    <li><strong>Email:</strong> {{ user.email }}</li>
+    <li><strong>Rol:</strong> {{ user.role }}</li>
+    <li><strong>Status cont:</strong> {{ user.enabled ? 'Activ' : 'Inactiv' }}</li>
+    <li><strong>Username:</strong> {{ user.username }}</li>
+    <li><strong>Cont blocat:</strong> {{ user.accountNonLocked ? 'Nu' : 'Da' }}</li>
+  </ul>
+</div>
+

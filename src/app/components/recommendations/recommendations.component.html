@@ -1,0 +1,33 @@
+<div class="reco-container">
+  <h2>Recomandări filme</h2>
+
+  <div class="form-card">
+    <div class="form-group">
+      <label for="title">Titlu film:</label>
+      <input id="title" [(ngModel)]="title" type="text" placeholder="Ex: Inception" />
+    </div>
+
+    <div class="form-group">
+      <label for="count">Număr recomandări:</label>
+      <input id="count" [(ngModel)]="count" type="number" min="1" max="20" />
+    </div>
+
+    <button (click)="fetchRecommendations()">Afișează recomandări</button>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <div class="movie-grid" *ngIf="recommendations.length">
+    <div class="movie-card" *ngFor="let movie of recommendations">
+      <div class="poster-placeholder">
+        <img [src]="movie.posterUrl || 'https://via.placeholder.com/200x300?text=Poster'" alt="{{ movie.title }}" />
+      </div>
+      <div class="movie-info">
+        <a [routerLink]="['/movies', movie.id]">
+          <h3>{{ movie.title }}</h3>
+        </a>
+        <p>IMDb: {{ movie.imdbScore }}</p>
+      </div>
+    </div>
+  </div>
+</div>

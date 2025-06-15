@@ -1,0 +1,26 @@
+.navbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: #ff7443;
+  padding: 1rem;
+  color: white;
+}
+
+.navbar a, .navbar button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navbar .spacer {
+  flex: 1;
+}
+
+.navbar a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}

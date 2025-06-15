@@ -1,0 +1,23 @@
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div *ngIf="movie" class="movie-details-container">
+  <div class="poster">
+    <img
+      *ngIf="movie.posterPath; else noPoster"
+      [src]="'https://image.tmdb.org/t/p/original/' + movie.posterPath"
+      alt="{{ movie.title }}"
+    />
+    <ng-template #noPoster>
+      <img src="https://via.placeholder.com/300x450?text=Poster+Indisponibil" alt="Poster indisponibil" />
+    </ng-template>
+  </div>
+  <div class="details">
+    <h2>{{ movie.title }}</h2>
+    <p><strong>Gen:</strong> {{ movie.categoryId }}</p>
+    <p><strong>Data de lansare:</strong> {{ movie.releaseDate | date }}</p>
+    <p><strong>Scor IMDb:</strong> {{ movie.imdbScore }}</p>
+    <p><strong>Descriere:</strong></p>
+    <p class="description">{{ movie.description }}</p>
+  </div>
+  <button (click)="addToWishlist()">Adaugă la favorite</button>
+</div>

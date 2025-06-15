@@ -1,0 +1,39 @@
+<div class="filter-container">
+  <input type="date" [(ngModel)]="from" />
+  <input type="date" [(ngModel)]="to" />
+  <input type="number" [(ngModel)]="limit" min="1" placeholder="Limită filme" />
+
+  <select [(ngModel)]="selectedSort">
+    <option value="imdb-desc">IMDb Score ⬇</option>
+    <option value="imdb-asc">IMDb Score ⬆</option>
+    <option value="title-az">Titlu A–Z</option>
+    <option value="title-za">Titlu Z–A</option>
+  </select>
+
+  <button (click)="filter()">Filtrează</button>
+</div>
+
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div class="movie-grid" *ngIf="movies.length">
+  <div class="movie-card" *ngFor="let movie of movies">
+    <div class="poster-placeholder">
+      <img
+        *ngIf="movie.posterPath; else noPoster"
+        [src]="'https://image.tmdb.org/t/p/original/' + movie.posterPath"
+        alt="{{ movie.title }}"
+      />
+      <ng-template #noPoster>
+        <img src="assets/no-poster.png" alt="Poster indisponibil" />
+      </ng-template>
+    </div>
+    <div class="movie-info">
+      <a [routerLink]="['/movies', movie.id]">
+        <h3>{{ movie.title }}</h3>
+      </a>
+      <p>IMDb: {{ movie.imdbScore }}</p>
+    </div>
+  </div>
+</div>
+

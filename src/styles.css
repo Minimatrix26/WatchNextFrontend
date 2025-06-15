@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #fffaf0, #fff0dc);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 300px;
+  top: 0;
+  left: -50%;
+  background: radial-gradient(circle at 50% 50%, #ffecd2 0%, transparent 70%);
+  animation: waveAnimation 6s ease-in-out infinite alternate;
+  opacity: 0.5;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+@keyframes waveAnimation {
+  0% {
+    transform: translateY(0) scaleX(1.2);
+  }
+  100% {
+    transform: translateY(30px) scaleX(1.4);
+  }
+}
+
+.wave-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wave-container svg {
+  animation: moveWave 8s ease-in-out infinite alternate;
+}
+
+@keyframes moveWave {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-40px);
+  }
+}
+
