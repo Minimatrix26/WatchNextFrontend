@@ -1,0 +1,26 @@
+<div class="signup-container">
+  <h2>Înregistrare</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <label>Prenume:</label>
+    <input [(ngModel)]="firstname" name="firstname" required />
+
+    <label>Nume:</label>
+    <input [(ngModel)]="lastname" name="lastname" required />
+
+    <label>Email:</label>
+    <input [(ngModel)]="email" name="email" type="email" required />
+
+    <label>Parolă:</label>
+    <input [(ngModel)]="password" name="password" type="password" required />
+
+    <label>Rol:</label>
+    <select [(ngModel)]="role" name="role">
+      <option value="USER">USER</option>
+    </select>
+
+    <button type="submit">Înregistrează-te</button>
+  </form>
+
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+</div>

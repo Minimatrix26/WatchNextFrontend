@@ -11,5 +11,8 @@
 
   <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
   <button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+
+  <a routerLink="/signup">Înregistrare</a>
+
 </nav>
 
