@@ -13,9 +13,10 @@
   </div>
   <div class="details">
     <h2>{{ movie.title }}</h2>
-    <p><strong>Gen:</strong> {{ movie.categoryId }}</p>
+    <p><strong>Gen:</strong> {{ movie.categoryName }}</p>
     <p><strong>Data de lansare:</strong> {{ movie.releaseDate | date }}</p>
     <p><strong>Scor IMDb:</strong> {{ movie.imdbScore }}</p>
+    <p><strong>Id IMDb:</strong> {{ movie.imdbId }}</p>
     <p><strong>Descriere:</strong></p>
     <p class="description">{{ movie.description }}</p>
     <button (click)="addToWishlist()">Adaugă la favorite</button>
