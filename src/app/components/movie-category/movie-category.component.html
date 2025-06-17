@@ -1,0 +1,30 @@
+<div class="category-filter">
+  <label for="categorySelect">Alege o categorie:</label>
+  <select id="categorySelect" [(ngModel)]="selectedCategoryId">
+    <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+  </select>
+  <button (click)="fetchMovies()">Afișează</button>
+</div>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div *ngIf="movies.length" class="movie-grid">
+  <div class="movie-card" *ngFor="let movie of movies">
+    <a [routerLink]="['/movies', movie.id]">
+      <img *ngIf="movie.posterPath; else noPoster"
+           [src]="'https://image.tmdb.org/t/p/original/' + movie.posterPath"
+           alt="{{ movie.title }}" />
+      <ng-template #noPoster>
+        <img src="assets/no-poster.png" alt="Poster indisponibil" />
+      </ng-template>
+      <h3>{{ movie.title }}</h3>
+      <p>IMDb: {{ movie.imdbScore }}</p>
+    </a>
+  </div>
+</div>
+
+<div *ngIf="totalPages > 1" class="pagination-controls">
+  <button (click)="prevPage()" [disabled]="page === 0">Anterior</button>
+  <span>Pagina {{ page + 1 }} din {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="page + 1 >= totalPages">Următor</button>
+</div>

@@ -32,6 +32,10 @@ export const routes: Routes = [
       {
         path: 'wishlist',
         loadComponent: () => import('./components/wishlist/wishlist.component').then(m => m.WishlistComponent)
+      },
+      {
+        path: 'movies-by-category',
+        loadComponent: () => import('./components/movie-category/movie-category.component').then(m => m.MovieCategoryComponent)
       }
 
     ]
