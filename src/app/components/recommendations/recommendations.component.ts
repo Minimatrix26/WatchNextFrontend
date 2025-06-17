@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { RouterModule } from '@angular/router';
 
@@ -22,7 +22,6 @@ export class RecommendationsComponent {
 
   fetchRecommendations(): void {
     const token = this.authService.getToken();
-
     if (!token) {
       this.errorMessage = 'Trebuie să fii autentificat.';
       return;
@@ -37,6 +36,18 @@ export class RecommendationsComponent {
       next: (data) => {
         this.recommendations = data;
         this.errorMessage = null;
+
+        // Afișăm posterele
+        this.recommendations.forEach(movie => {
+          const params = new HttpParams().set('title', movie.title);
+          this.http.get<{ posterPath: string }>('http://localhost:8080/api/v1/movies/poster', {
+            headers,
+            params
+          }).subscribe({
+            next: res => movie.posterPath = res.posterPath,
+            error: () => movie.posterPath = null
+          });
+        });
       },
       error: () => {
         this.errorMessage = 'Eroare la generarea recomandărilor.';
